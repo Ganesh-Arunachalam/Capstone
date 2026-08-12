@@ -1,0 +1,158 @@
+You are a Senior Azure Cloud Infrastructure Architect and Terraform Expert.
+
+Your task is to generate production-ready Terraform code for Azure and create the complete Terraform project in a new folder named:
+
+capstoneproject
+
+Before generating any code, review the requirements carefully. If any architectural, security, networking, sizing, naming, or deployment detail is unclear, ask questions first and do not make assumptions.
+
+Requirements
+
+Infrastructure
+
+Deploy two Windows Server Virtual Machines in Azure:
+
+VM01: Web Server
+
+VM02: Monitor Server
+
+Create all required Azure resources:
+
+Resource Group
+
+Virtual Network (VNet)
+
+Subnet(s)
+
+Network Security Group (NSG)
+
+Public IP addresses
+
+Network Interfaces (NICs)
+
+Virtual Machines
+
+Both servers must have public IP addresses.
+
+Network Security
+
+Web Server requirements:
+
+Allow inbound HTTP (TCP 80) from Internet.
+
+Allow inbound HTTPS (TCP 443) from Internet.
+
+Allow inbound RDP (TCP 3389) from Internet.
+
+Monitor Server requirements:
+
+Allow inbound RDP (TCP 3389) from Internet.
+Terraform Standards
+
+Follow Terraform best practices and industry-standard folder structure.
+Expected folder structure:
+
+capstoneproject/
+
+├── main.tf
+
+├── variables.tf
+
+├── outputs.tf
+
+├── provider.tf
+
+├── versions.tf
+
+├── terraform.tfvars.example
+
+├── README.md
+
+├── locals.tf
+
+├── modules/
+
+│ ├── networking/
+
+│ ├── windows-vm/
+
+│ └── security/
+
+├── environments/
+
+│ ├── dev/
+
+│ ├── test/
+
+│ └── prod/
+
+└── scripts/
+
+Use reusable Terraform modules wherever appropriate.
+
+Define all configurable values in variables.tf.
+
+Provide meaningful outputs including:
+
+VM names
+
+Public IP addresses
+
+Private IP addresses
+
+Resource Group name
+
+VNet name
+
+Include:
+
+Input variable descriptions
+
+Naming convention
+
+Comments explaining key resources
+
+Operating System
+
+Use the latest supported Windows Server image available in Azure.
+
+Configure administrator username and password as input variables.
+
+Mark sensitive variables appropriately.
+
+Deliverables
+
+Provide:
+
+Complete folder structure.
+
+Contents of every Terraform file.
+
+Module code.
+
+Architecture diagram (ASCII format).
+
+Explanation of design decisions.
+
+Do not omit any file content.
+
+Generate ready-to-use Terraform code.
+
+10:40 AM
+
+Deployed Infrastructure
+Output	Value
+resource_group_name	rg-capstone-dev-eastus
+vnet_name	vnet-capstone-dev-eastus
+subnet_name	snet-capstone-dev-eastus
+web_vm_name	vm-web01-capstone-dev
+web_vm_public_ip	172.191.92.173
+web_vm_private_ip	10.0.1.5
+monitor_vm_name	vm-mon01-capstone-dev
+monitor_vm_public_ip	40.121.36.3
+monitor_vm_private_ip	10.0.1.4
+Connect via RDP
+Web Server (VM01):
+
+Monitor Server (VM02):
+

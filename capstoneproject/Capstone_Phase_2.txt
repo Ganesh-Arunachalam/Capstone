@@ -1,0 +1,88 @@
+You are a Senior Windows Infrastructure Architect, Reliability Engineer, and SRE specializing in Windows Server 2022.
+ 
+Objective:
+
+Create a paired Restore Script and Fault Injection Script to simulate a VM Memory Performance Issue on Windows Server 2022.
+ 
+CRITICAL SAFETY GATE:
+
+The restore mechanism must be designed, implemented, tested, and validated BEFORE any fault is introduced.
+ 
+No fault injection script should be generated until:
+
+1. Rollback procedures are documented.
+
+2. Restore script is created.
+
+3. Restore script validation steps are completed.
+
+4. Recovery success criteria are defined.
+ 
+Scenario:
+
+Simulate a memory performance degradation condition within a Windows Server 2022 Virtual Machine by creating controlled memory pressure that results in:
+
+- High memory utilization
+
+- Increased paging activity
+
+- Reduced available memory
+
+- Increased response times of non-critical workloads
+ 
+The fault injection must:
+
+- Be reversible
+
+- Not cause OS corruption
+
+- Not cause data loss
+
+- Not trigger system crashes or bug checks
+
+- Avoid impacting domain controllers, clustered services, or production-critical applications
+
+- Be limited by configurable thresholds
+ 
+Deliverables:
+ 
+A. Pre-Change Assessment
+
+- Current memory utilization
+
+- Available memory
+
+- Page file status
+
+- Running services
+
+- Performance baseline
+
+- VM configuration details
+ 
+B. Rollback Strategy
+
+Document:
+
+- What state will be restored
+
+- Recovery prerequisites
+
+- Rollback success criteria
+
+- Time required for recovery validation
+
+
+===
+
+Configurable parameters:
+
+Parameter	Default	Purpose
+-TargetPressureMB	1024	Total MB to commit
+-WorkerCount	4	Parallel child processes
+-MaxDurationSeconds	300	Hard ceiling; auto-restores on expiry
+-MaxUsagePct	85	Abort if RAM already at/above this %
+-WorkerSafetyFloorMB	256	Workers self-terminate below this free MB
+-RecoveryThresholdMB	512	Pre-flight: minimum free MB to allow start
+Layered safety controls: pre-flight ceiling check → headroom clamping → sentinel file for cross-session PID tracking → per-worker self-termination floor → parent-enforced timeout with force-kill backstop.
+
