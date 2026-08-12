@@ -1,0 +1,29 @@
+# ---------------------------------------------------------------------------
+# terraform.tfvars.example
+# Copy to terraform.tfvars and fill in values before running.
+# NEVER commit terraform.tfvars to source control — add it to .gitignore.
+# ---------------------------------------------------------------------------
+
+# General settings
+location    = "eastus"
+environment = "dev"   # dev | test | prod
+project     = "capstone"
+
+# Networking
+vnet_address_space    = ["10.0.0.0/16"]
+subnet_address_prefix = "10.0.1.0/24"
+
+# Virtual Machine sizing
+vm_size      = "Standard_B2s"       # upgrade to Standard_D2s_v3 for prod
+os_disk_type = "StandardSSD_LRS"    # use Premium_LRS for prod
+
+# VM credentials
+# admin_password can also be supplied via the TF_VAR_admin_password environment variable
+admin_username = "azureadmin"
+admin_password = "REPLACE_ME_Str0ng!Pass"   # min 12 chars, upper/lower/digit/special
+
+# Optional extra tags
+tags = {
+  Owner      = "your-name"
+  CostCenter = "engineering"
+}
